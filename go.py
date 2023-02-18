@@ -33,7 +33,7 @@ consumer = KafkaConsumer(
 )
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:2312@localhost/hackaton'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:****@localhost/your_db'
 db = SQLAlchemy(app)
 
 
@@ -82,7 +82,7 @@ for message in consumer:
         for h, value in enumerate(df[col]):
             worksheet.write(h + 1, i, value)
     writer.save()
-    engine = create_engine('postgresql://postgres:2312@localhost/hackaton')
+    engine = create_engine('postgresql://postgres:****@localhost/your_db')
     data = pd.read_excel("output.xlsx")
     data2 = pd.read_excel("output.xlsx")
     data.to_csv('file.csv', index=False)
@@ -93,9 +93,9 @@ for message in consumer:
 
     # Соединяемся с базой данных
     conn = psycopg2.connect(
-        dbname="hackaton",
+        dbname="your_db",
         user="postgres",
-        password="2312",
+        password="****",
         host="localhost",
         port="5432"
     )
